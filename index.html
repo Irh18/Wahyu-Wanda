@@ -173,6 +173,7 @@
         .disabled {
     pointer-events: none; /* Mencegah interaksi dengan elemen */
     opacity: 1; /* Menambahkan efek transparansi */
+    display: none;
 }
 
 .dan {
@@ -408,7 +409,6 @@
     
     function handleClick() {
         showSlide(1); // Menampilkan slide ke-1 setelah diklik
-        document.getElementById('bukaundangan').style.display = 'none'; // Menyembunyikan teks "Nama Tamu"
     
         // Menghapus class 'disabled' dari bottom bar
         bottomBar.classList.remove('disabled');
