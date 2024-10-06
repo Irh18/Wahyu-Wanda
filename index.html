@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tampilan Mobile</title>
@@ -10,309 +9,301 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-<style>
-
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        background-image: url('latar.png');
-        background-size: cover;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        font-family: 'Poppins';
-    }
-
-    .slide {
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        text-align: center;
-        padding: 25px;
-    }
-
-    .disabled {
-        pointer-events: none; /* Mencegah interaksi dengan elemen */
-        opacity: 1; /* Menambahkan efek transparansi */
-    }
-
-    .active {
-        display: flex; /* Tampilkan slide yang aktif */
-        opacity: 1;
-        animation: fadeIn 0.8s forwards;
-    }
-
-    @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-    }
-
-    p, img, .maps, .box {
-        animation: contentAnimation 0.8s forwards;
-    }
-
-    @keyframes contentAnimation {
-        0% { transform: translateY(20px); opacity: 0; }
-        100% { transform: translateY(0); opacity: 1; }
-    }
-
-    .bottom-bar {
-        position: fixed;
-        bottom: 0px;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        padding: 15px 0;
-        background: linear-gradient(135deg, #f8e1a3, #ffedbc, #f8e1a3, #ffedbc );
-
-    }
-    .icon-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        opacity: 0.8;
-        transition: opacity 0.3s, transform 0.3s;
-        margin: 0 10px;
-    }
-    .active-icon {
-        opacity: 1;
-        transform: scale(1.2) translateY(-5px);
-    }
-    .icon-button i {
-        font-size: 30px;
-        color: #8B0000;
-    }
-    @media (max-width: 600px) {
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('latar.png');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-family: 'Poppins';
+        }
+        .content {
+    /* background-color: rgba(255, 255, 255, 0.9); */
+    width: 90%;
+    height: 86%;
+    margin-bottom: 45px;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+    overflow: hidden;
+}
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            padding: 25px;
+        }
+        .active {
+            display: flex; /* Tampilkan slide yang aktif */
+            opacity: 1;
+            animation: fadeIn 0.8s forwards;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        p, img, .maps, .box {
+            animation: contentAnimation 0.8s forwards;
+        }
+        @keyframes contentAnimation {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .bottom-bar {
+            position: absolute;
+            bottom: 0px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 15px 0;
+            background: linear-gradient(135deg, #f8e1a3, #ffedbc, #f8e1a3, #ffedbc );
+            /* border-radius: 10px; */
+        }
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s, transform 0.3s;
+            margin: 0 10px;
+        }
+        .active-icon {
+            opacity: 1;
+            transform: scale(1.2) translateY(-5px);
+        }
         .icon-button i {
-            font-size: 26px;
+            font-size: 30px;
+            color: #8B0000;
         }
-    }
-
-    .kananatas {
-        animation: kananatas 10s linear infinite;
-    }
-
-    @keyframes kananatas {
-        0% {
-            transform: rotate(0deg);
+        @media (max-width: 600px) {
+            .icon-button i {
+                font-size: 26px;
+            }
         }
-        100% {
-            transform: rotate(360deg);
+
+        .kananatas {
+            animation: kananatas 10s linear infinite;
         }
-    }
 
-    .kiriatas {
-        animation: kiriatas 10s linear infinite;
-    }
-
-    @keyframes kiriatas {
-        0% {
-            transform: rotate(0deg);
+        @keyframes kananatas {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        100% {
-            transform: rotate(-360deg);
+
+        .kiriatas {
+            animation: kiriatas 10s linear infinite;
         }
-    }
 
-    .kananbawah {
-        animation: kananbawah 10s linear infinite;
-    }
-
-    @keyframes kananbawah {
-        0% {
-            transform: rotate(0deg);
+        @keyframes kiriatas {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(-360deg);
+            }
         }
-        100% {
-            transform: rotate(-360deg);
+
+        .kananbawah {
+            animation: kananbawah 10s linear infinite;
         }
-    }
 
-    .kiribawah {
-        animation: kiribawah 10s linear infinite;
-    }
-
-    @keyframes kiribawah {
-        0% {
-            transform: rotate(0deg);
+        @keyframes kananbawah {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(-360deg);
+            }
         }
-        100% {
-            transform: rotate(360deg);
+
+        .kiribawah {
+            animation: kiribawah 10s linear infinite;
         }
-    }
 
-    .panggilan {
-        color: #8B0000;
-        font-family: 'Playfair Display', serif;
-        font-size: 40px;
-    }
+        @keyframes kiribawah {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
 
-    .buka {
-        background-color: #8B0000;
-        padding: 10px 30px;
-        font-size: 15px;
-        color: white;
-        border-radius: 25px;
-        margin-top: 23px;
-    }
-
-    .container {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden; 
-    }
-
-    .dan {
-        margin: -25px;
-    }
-
-    .judul{
-        margin: -30px;
-    }
-
-    .vintage {
-        width: 170px;
-    }
-
-    .kepada {
-        margin-top: -45px;
-    }
-
-    .vintagedoa {
-        width: 150px;
-        margin: 10px 0px 5px 0px;
-    }
-
-    .doa {
-        margin-bottom: -10px;
-        font-size: 18px;
-        font-weight: bold;
-        color: #8B0000;
-    }
-
-    .isidoa {
-        padding: 0px 23px;
-        font-size: 15px;
-    }
-
-    .riwayat {
-        font-size: 12px;
-        margin-top: -5px;
-    }
-
-    .maps {
-        border: 5px solid white;
-        width: 300px;
-        height: 300px;
-        border-radius: 10px;
-    }
-
-    .googlemaps {
-        font-size: 20px;
-        color: #8B0000;
-        font-weight: bold;
-    }
-
-    .isi, .acara {
-        padding: 0 20px;
-    }
-
-    .bismillah {
-        margin-bottom: -10px;
-    }
-
-    .nama {
-        font-family: 'Playfair Display',serif;
-        color: #8B0000;
-        font-size: 30px;
-        margin: 5px 0px 25px 0px;
-    }
-
-    .anakke {
+        .small-text {
         font-size: 10px;
-        margin: -25px 0px 0px 0px;
-    }
+        }
+        .panggilan {
+            color: #8B0000;
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+        }
+        .buka {
+            background-color: #8B0000;
+            padding: 10px 30px;
+            font-size: 15px;
+            color: white;
+            border-radius: 25px;
+            margin-top: 23px;
+        }
 
-    .and {
-        font-family: 'Playfair Display',serif;
-        font-size: 35px;
-        margin: 20px 0px;
-        color: #8B0000;
-    }
+        .container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; 
+        }
 
-    .akad {
-        color: #8B0000;
-        font-size: 25px;
-        font-family: 'Playfair Display',serif;
-        margin: 0px 0px -5px 0px;
-    }
 
-    .resepsi {
-        color: #8B0000;
-        font-size: 25px;
-        font-family: 'Playfair Display',serif;
-        margin: 25px 0px -5px 0px;
-    }
 
-    .tanggal, .pukul, .tempat {
-        margin: 0;
-    }
+        .disabled {
+    pointer-events: none; /* Mencegah interaksi dengan elemen */
+    opacity: 1; /* Menambahkan efek transparansi */
+}
 
-    .countdown {
-        display: flex;
-        justify-content: space-around;
-        font-size: 24px;
-        margin-top: 20px;
-    }
-    .box {
-        color: white;
-        background: #8B0000;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 5px;
-        border-radius: 5px;
-        width: 55px;
-        margin: 0px 5px;
-        font-weight: bold;
-        font-size: 25px;
-    }
-    .label {
-        font-size: 14px;
-        margin-top: -5px;
-        font-weight: normal;
-    }
+.dan {
+    margin: -25px;
+}
+.judul{
+    margin: -30px;
+}
+.vintage {
+    width: 170px;
+}
+.kepada {
+    margin-top: -45px;
+}
+.vintagedoa {
+    width: 150px;
+    margin: 10px 0px 5px 0px;
+}
 
-    .content {
-        /* background-color: rgba(255, 255, 255, 0.9); */
-        width: 90%;
-        height: 86%;
-        margin-bottom: 45px;
-        /* display: flex; */
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
-        overflow: hidden;
-    }
+.doa {
+    margin-bottom: -10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #8B0000;
+}
+        .isidoa {
+            padding: 0px 23px;
+            font-size: 15px;
+        }
+        .riwayat {
+    font-size: 12px;
+    margin-top: -5px;
+}
 
-</style>
+.maps {
+    border: 5px solid white;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.googlemaps {
+    font-size: 20px;
+    color: #8B0000;
+    font-weight: bold;
+}
+
+.isi, .acara {
+    padding: 0 20px;
+}
+
+.bismillah {
+    margin-bottom: -10px;
+}
+
+.nama {
+    font-family: 'Playfair Display',serif;
+    color: #8B0000;
+    font-size: 30px;
+    margin: 5px 0px 25px 0px;
+}
+
+.anakke {
+    font-size: 10px;
+    margin: -25px 0px 0px 0px;
+}
+
+.and {
+    font-family: 'Playfair Display',serif;
+    font-size: 35px;
+    margin: 20px 0px;
+    color: #8B0000;
+}
+
+.akad {
+    color: #8b0000;
+    font-size: 25px;
+    font-family: 'Playfair Display',serif;
+    margin: 0px 0px -5px 0px;
+}
+
+.resepsi {
+    color: #8b0000;
+    font-size: 25px;
+    font-family: 'Playfair Display',serif;
+    margin: 25px 0px -5px 0px;
+}
+
+.tanggal, .pukul, .tempat {
+    margin: 0;
+}
+
+.countdown {
+    display: flex;
+    justify-content: space-around;
+    font-size: 24px;
+    margin-top: 20px;
+}
+.box {
+    color: white;
+    background: #8B0000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    /* border: 1px solid #000; */
+    border-radius: 5px;
+    width: 55px;
+    margin: 0px 5px;
+    font-weight: bold;
+    font-size: 25px;
+}
+.label {
+    font-size: 14px;
+    margin-top: -5px;
+    font-weight: normal;
+}
+
+
+    </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="bunga.png" class="kiribawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -55px;left: -85px;">
-        <img src="bunga.png" class="kananbawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -55px;right: -85px;">
-        <img src="bunga.png" class="kiriatas" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;top: -110px;left: -90px;">
-        <img src="bunga.png" class="kananatas" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;top: -110px;right: -90px;">
+        <img src="bunga.png" alt="Cincin" class="kiribawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -55px;left: -85px;">
+        <img src="bunga.png" alt="Cincin" class="kananbawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -55px;right: -85px;">
+        <img src="bunga.png" alt="Cincin" class="kiriatas" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;top: -110px;left: -90px;">
+        <img src="bunga.png" alt="Cincin" class="kananatas" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;top: -110px;right: -90px;">  
     </div>
-    
+
     <div class="content">
     <div class="slide active">
         <p class="judul">The Wedding Of</p>
@@ -321,7 +312,7 @@
         <p class="panggilan">Wanda</p><br>
         <p class="kepada">Kepada Yth:<br><strong>Nama Tamu</strong></p>
         <img src="vintage.png" alt="vintage" class="vintage">
-        <p id="bukaundangan" class="buka" onclick="handleClick()">Buka Undangan</p>
+        <p id="bukaundangan" class="buka" onclick="handleClick()">Buka Undangan</p>  
     </div>
 
     <div class="slide">
@@ -340,6 +331,7 @@
         <p class="and">&</p>
         <p class="nama">Wanda Indrasuari</p>
         <p class="anakke">(Putri bungsu dari Bpk. Abd. Jalil Dg. Tulung & Ibu Rostini)</p>
+        <p class="acara">Yang Insya Allah akan<br>diselenggarakan pada</p>
     </div>
         
     <div class="slide">
@@ -356,50 +348,64 @@
         <p class="tempat">Tempat : Gedung Lasharan Garden<br>Jl. Abdullah Dg. Sirua No.106 Makassar</p>
 
         <div class="countdown">
-        <div class="box" id="days">
-            <span id="daysValue">00</span>
-            <span class="label">Hari</span>
-        </div>
-        <div class="box" id="hours">
-            <span id="hoursValue">00</span>
-            <span class="label">Jam</span>
-        </div>
-        <div class="box" id="minutes">
-            <span id="minutesValue">00</span>
-            <span class="label">Menit</span>
-        </div>
-        <div class="box" id="seconds">
-            <span id="secondsValue">00</span>
-            <span class="label">Detik</span>
-        </div>
+            <div class="box" id="days">
+                <span id="daysValue">00</span>
+                <span class="label">Hari</span>
+            </div>
+            <div class="box" id="hours">
+                <span id="hoursValue">00</span>
+                <span class="label">Jam</span>
+            </div>
+            <div class="box" id="minutes">
+                <span id="minutesValue">00</span>
+                <span class="label">Menit</span>
+            </div>
+            <div class="box" id="seconds">
+                <span id="secondsValue">00</span>
+                <span class="label">Detik</span>
+            </div>
         </div>
     </div>
 
-    <div class="slide">
-        <p class="googlemaps">Google Maps</p>
-        <iframe class="maps" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5619.666433009203!2d119.44336429924816!3d-5.15121969213667!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee2d07c5c57e7%3A0x9ac8c5526ecc9e3c!2sSTIM%20Lasharan%20Jaya%20Makassar!5e0!3m2!1sid!2sid!4v1728178837728!5m2!1sid!2sid"></iframe>
-        <p class="alamat"><strong>Lokasi Acara:</strong><br>Gedung Lasharan Garden<br>Jl. Abdullah Dg. Sirua No.106<br>Makassar</p>
+        <div class="slide">
+            <p class="googlemaps">Google Maps</p>
+            <iframe class="maps" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5619.666433009203!2d119.44336429924816!3d-5.15121969213667!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee2d07c5c57e7%3A0x9ac8c5526ecc9e3c!2sSTIM%20Lasharan%20Jaya%20Makassar!5e0!3m2!1sid!2sid!4v1728178837728!5m2!1sid!2sid"></iframe>
+            <p class="alamat"><strong>Lokasi Acara:</strong><br>Gedung Lasharan Garden<br>Jl. Abdullah Dg. Sirua No.106<br>Makassar</p>
+        </div>
     </div>
+
+
+    
+    <div class="bottom-bar disabled"> <!-- Tambahkan class 'disabled' di sini -->
+        <button class="icon-button active-icon" onclick="showSlide(0)"><i class="fas fa-home"></i></button>
+        <button class="icon-button" onclick="showSlide(1)"><i class="fas fa-heart"></i></button>
+        <button class="icon-button" onclick="showSlide(2)"><i class="fas fa-ring"></i></button>
+        <button class="icon-button" onclick="showSlide(3)"><i class="fas fa-map-marker-alt"></i></button>
+        <button class="icon-button" onclick="showSlide(4)"><i class="fas fa-user-friends"></i></button>
+        <button class="icon-button" onclick="showSlide(5)"><i class="fas fa-times"></i></button>
     </div>
     
     <audio id="backgroundAudio" autoplay loop>
         <source src="https://github.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
     </audio>
 
-    <div class="bottom-bar disabled"> <!-- Tambahkan class 'disabled' di sini -->
-        <button class="icon-button active-icon" onclick="showSlide(0)"><i class="fas fa-home"></i></button>
-        <button class="icon-button" onclick="showSlide(1)"><i class="fa-solid fa-book-quran"></i></button>
-        <button class="icon-button" onclick="showSlide(2)"><i class="fas fa-heart"></i></button>
-        <button class="icon-button" onclick="showSlide(3)"><i class="fa-solid fa-calendar-days"></i></button>
-        <button class="icon-button" onclick="showSlide(4)"><i class="fa-solid fa-map-location"></i></button>
-        <button class="icon-button" onclick="showSlide(5)"><i class="fas fa-times"></i></button>
-    </div>
+<button id="muteButton" style="position: absolute;background: white;border: none; color: #4a9ac3; bottom: 86px; right: 26px; width: 35px; height: 35px; border-radius: 20px; "><i id="muteIcon" class="fas fa-volume-up"></i></button>
 
-    <button id="muteButton" style="position: absolute;background: #ffffff70;border: none; color: #8B0000; bottom: 86px; right: 26px; width: 35px; height: 35px; border-radius: 20px; "><i id="muteIcon" class="fas fa-volume-up"></i></button>
+<button onclick="toggleEdit()" style="position: absolute;bottom: 86px;right: 70px;width: 35px;height: 35px;border-radius: 20px;border: none;color: #4a9ac3;background: white;"><i class="fas fa-pen"></i></button>
+
+<div id="editButtons" style="display: none; position: absolute; bottom: 50px; right: 70px;">
+    <button onclick="saveChanges()" style="border: none; background: white; color: #4a9ac3;">
+        <i class="fas fa-save"></i> Save
+    </button>
+    <button onclick="cancelEdit()" style="border: none; background: white; color: #4a9ac3;">
+        <i class="fas fa-times"></i> Cancel
+    </button>
+</div>
+
 
 <script>
-
-let currentSlide = 0;
+    let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const iconButtons = document.querySelectorAll('.icon-button');
     const backgroundAudio = document.getElementById('backgroundAudio');
@@ -430,6 +436,7 @@ window.addEventListener('DOMContentLoaded', () => {
     bottomBar.classList.add('disabled');
 });
 
+
     let isMuted = false; // Variabel untuk menyimpan status mute
 
     const muteButton = document.getElementById('muteButton');
@@ -449,40 +456,132 @@ window.addEventListener('DOMContentLoaded', () => {
         isMuted = !isMuted; // Toggle status mute
     });
 
-    function getTargetDate() {
-                const tanggalText = document.getElementById("tanggalresepsi").innerText;
-                const dateParts = tanggalText.match(/(\d{1,2}) (\w+) (\d{4})/);
-                const day = dateParts[1];
-                const month = new Date(Date.parse(dateParts[2] + " 1")).getMonth() + 1; // Mengonversi nama bulan ke angka
-                const year = dateParts[3];
-                return new Date(year, month - 1, day, 19, 0, 0).getTime(); // Mengatur jam ke 19:00
+    let editing = false;
+
+document.addEventListener('DOMContentLoaded', loadFromLocalStorage);
+
+function toggleEdit() {
+    if (editing) {
+        // If already editing, just toggle off
+        editing = false;
+        const elements = document.querySelectorAll('.content h1, .content p');
+        const editButtons = document.getElementById('editButtons');
+
+        elements.forEach(el => {
+            el.contentEditable = false;
+            el.style.border = 'none';
+        });
+
+        editButtons.style.display = 'none';
+        return;
+    }
+
+    // Prompt for PIN using SweetAlert
+    Swal.fire({
+        title: 'Masukkan PIN untuk mengedit',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Verifikasi',
+        cancelButtonText: 'Batal',
+        preConfirm: (inputValue) => {
+            if (inputValue !== "182598") {
+                Swal.showValidationMessage('PIN salah. Silakan coba lagi.');
             }
+            return inputValue;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            editing = true;
+            const elements = document.querySelectorAll('.content h1, .content p');
+            const editButtons = document.getElementById('editButtons');
 
-            let targetDate = getTargetDate();
+            elements.forEach(el => {
+                el.contentEditable = true;
+                el.style.border = '1px dashed #ccc';
+            });
 
-            const countdownFunction = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
+            editButtons.style.display = 'block';
+        }
+    });
+}
 
-                // Hitung waktu
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Menampilkan hasil dalam elemen yang sesuai
-                document.getElementById("daysValue").innerHTML = days < 10 ? "0" + days : days;
-                document.getElementById("hoursValue").innerHTML = hours < 10 ? "0" + hours : hours;
-                document.getElementById("minutesValue").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-                document.getElementById("secondsValue").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-                // Jika hitung mundur selesai, tampilkan pesan
-                if (distance < 0) {
-                    clearInterval(countdownFunction);
-                    document.querySelector(".countdown").innerHTML = "Acara Sedang Berlangsung";
-                }
-            }, 1000);
+function saveChanges() {
+    const elements = document.querySelectorAll('.content h1, .content p');
+    elements.forEach(el => {
+        el.contentEditable = false;
+        el.style.border = 'none';
+        saveToLocalStorage(el);
+    });
+    toggleEdit(); // Hide the edit buttons and finalize editing
+}
 
-</script>
+function cancelEdit() {
+    const elements = document.querySelectorAll('.content h1, .content p');
+    elements.forEach(el => {
+        el.contentEditable = false;
+        el.style.border = 'none';
+        // Optionally revert changes if necessary
+    });
+    toggleEdit(); // Hide the edit buttons and finalize editing
+}
+
+function saveToLocalStorage(el) {
+    const key = el.tagName + '_' + el.dataset.id; // Create a unique key using data-id
+    localStorage.setItem(key, el.innerText);
+}
+
+function loadFromLocalStorage() {
+    const elements = document.querySelectorAll('.content h1[data-id], .content p[data-id]');
+    elements.forEach(el => {
+        const key = el.tagName + '_' + el.dataset.id; // Use the same unique key
+        const savedContent = localStorage.getItem(key);
+        if (savedContent) {
+            el.innerText = savedContent;
+        }
+    });
+}
+
+function getTargetDate() {
+            const tanggalText = document.getElementById("tanggalresepsi").innerText;
+            const dateParts = tanggalText.match(/(\d{1,2}) (\w+) (\d{4})/);
+            const day = dateParts[1];
+            const month = new Date(Date.parse(dateParts[2] + " 1")).getMonth() + 1; // Mengonversi nama bulan ke angka
+            const year = dateParts[3];
+            return new Date(year, month - 1, day, 19, 0, 0).getTime(); // Mengatur jam ke 19:00
+        }
+
+        let targetDate = getTargetDate();
+
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Hitung waktu
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Menampilkan hasil dalam elemen yang sesuai
+            document.getElementById("daysValue").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hoursValue").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutesValue").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("secondsValue").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            // Jika hitung mundur selesai, tampilkan pesan
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.querySelector(".countdown").innerHTML = "Acara Dimulai!";
+            }
+        }, 1000);
+
+
+
+    </script>
 </body>
 </html>
