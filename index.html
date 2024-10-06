@@ -78,11 +78,25 @@
         cursor: pointer;
         opacity: 0.8;
         transition: opacity 0.3s, transform 0.3s;
-        margin: 0 10px;
+        margin: 0 5px;
     }
     .active-icon {
         opacity: 1;
-        transform: scale(1.2) translateY(-5px);
+        animation: bottom 2s infinite;
+        cursor: pointer;
+    }
+    
+    @keyframes bottom {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1) translateY(-5px);
+        }
+        100% {
+            transform: scale(1);
+        }
+    
     }
     .icon-button i {
         font-size: 30px;
@@ -90,7 +104,8 @@
     }
     @media (max-width: 600px) {
         .icon-button i {
-            font-size: 26px;
+    font-size: 16px;
+    padding: 5px;
         }
     }
 
@@ -149,12 +164,25 @@
     .small-text {
     font-size: 10px;
     }
+    
     .panggilan {
         color: #8B0000;
         font-family: 'Playfair Display', serif;
         font-size: 40px;
+        animation: panggilan 1s ease forwards;
     }
 
+    @keyframes panggilan {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
     .buka {
         background-color: #8B0000;
         padding: 10px 30px;
@@ -162,7 +190,8 @@
         color: white;
         border-radius: 25px;
         margin-top: 23px;
-        animation: denyut 1s infinite;
+        animation: denyut 2s infinite;
+        cursor: pointer;
     }
     @keyframes denyut {
         0% {
@@ -190,15 +219,19 @@
     .dan {
         margin: -25px;
     }
+
     .judul{
         margin: -30px;
     }
+
     .vintage {
         width: 170px;
     }
+
     .kepada {
         margin-top: -45px;
     }
+    
     .vintagedoa {
         width: 150px;
         margin: 10px 0px 5px 0px;
@@ -209,7 +242,20 @@
         font-size: 18px;
         font-weight: bold;
         color: #8B0000;
+        animation: panggilan 1s ease forwards;
     }
+
+    @keyframes panggilan {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
     .isidoa {
         font-size: 15px;
     }
@@ -229,6 +275,18 @@
         font-size: 20px;
         color: #8B0000;
         font-weight: bold;
+        animation: googlemaps 1s ease forwards;
+    }
+
+    @keyframes googlemaps {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 
     .bismillah {
@@ -236,10 +294,24 @@
     }
 
     .nama {
-        font-family: 'Playfair Display',serif;
+        font-family: 'Playfair Display', serif;
         color: #8B0000;
         font-size: 26px;
         margin: 5px 0px 25px 0px;
+        opacity: 0; /* Mulai dengan transparansi 0 */
+        transform: scale(0.9); /* Mulai sedikit lebih kecil */
+        animation: fadeInScale 1s ease forwards;
+    }
+
+    @keyframes fadeInScale {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 
     .anakke {
@@ -259,6 +331,18 @@
         font-size: 25px;
         font-family: 'Playfair Display',serif;
         margin: 0px 0px -5px 0px;
+        animation: akad 1s ease forwards;
+    }
+
+    @keyframes akad {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 
     .resepsi {
@@ -266,6 +350,18 @@
         font-size: 25px;
         font-family: 'Playfair Display',serif;
         margin: 25px 0px -5px 0px;
+        animation: resepsi 1s ease forwards;
+    }
+
+    @keyframes resepsi {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 
     .tanggal, .pukul, .tempat {
@@ -380,12 +476,12 @@
     </div>
 
     <div class="bottom-bar disabled"> <!-- Tambahkan class 'disabled' di sini -->
-        <button class="icon-button active-icon" onclick="showSlide(0)"><i class="fas fa-home"></i></button>
-        <button class="icon-button" onclick="showSlide(1)"><i class="fa-solid fa-book-quran"></i></button>
+        <button class="icon-button active-icon" onclick="showSlide(0)"><i class="fa-solid fa-envelope-open-text"></i></i></button>
+        <button class="icon-button" onclick="showSlide(1)"><i class="fa-solid fa-star-and-crescent"></i></i></button>
         <button class="icon-button" onclick="showSlide(2)"><i class="fas fa-heart"></i></button>
         <button class="icon-button" onclick="showSlide(3)"><i class="fa-solid fa-calendar-days"></i></button>
         <button class="icon-button" onclick="showSlide(4)"><i class="fa-solid fa-map-location"></i></button>
-        <button class="icon-button" onclick="showSlide(5)"><i class="fas fa-times"></i></button>
+        <button class="icon-button" onclick="showSlide(5)"><i class="fa-solid fa-panorama"></i></button>
     </div>
 
     <audio id="backgroundAudio" autoplay loop>
