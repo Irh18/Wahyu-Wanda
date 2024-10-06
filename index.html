@@ -23,6 +23,7 @@
         align-items: center;
         position: relative;
         font-family: 'Poppins';
+        overflow: hidden;
     }
 
     .slide {
@@ -283,10 +284,6 @@
         font-weight: normal;
     }
 
-    .bottom-bar.disabled {
-        display: none; /* Menyembunyikan bottom bar ketika class 'disabled' ditambahkan */
-    }
-
 </style>
 </head>
 <body>
@@ -370,9 +367,7 @@
         <source src="https://github.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="muteButton" style="position: absolute;background: #ffffff70;border: none; color: #8B0000; bottom: 86px; right: 26px; width: 35px; height: 35px; border-radius: 20px; "><i id="muteIcon" class="fas fa-volume-up"></i></button>
-
-    <div class="bottom-bar disabled">
+    <div class="bottom-bar"> <!-- Menghapus class 'disabled' di sini -->
         <button class="icon-button active-icon" onclick="showSlide(0)"><i class="fas fa-home"></i></button>
         <button class="icon-button" onclick="showSlide(1)"><i class="fa-solid fa-book-quran"></i></button>
         <button class="icon-button" onclick="showSlide(2)"><i class="fas fa-heart"></i></button>
@@ -380,6 +375,8 @@
         <button class="icon-button" onclick="showSlide(4)"><i class="fa-solid fa-map-location"></i></button>
         <button class="icon-button" onclick="showSlide(5)"><i class="fas fa-times"></i></button>
     </div>
+
+    <button id="muteButton" style="position: absolute;background: #ffffff70;border: none; color: #8B0000; bottom: 86px; right: 26px; width: 35px; height: 35px; border-radius: 20px; "><i id="muteIcon" class="fas fa-volume-up"></i></button>
 
 <script>
 
@@ -402,8 +399,6 @@
 
     function handleClick() {
         showSlide(1); // Menampilkan slide ke-1 setelah diklik
-        // Hapus class 'disabled' untuk menampilkan bottom bar
-        bottomBar.classList.remove('disabled');
     }
 
     let isMuted = false; // Variabel untuk menyimpan status mute
