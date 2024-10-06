@@ -61,16 +61,16 @@
     }
 
     .bottom-bar {
-        position: fixed;
-        bottom: 0px;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        padding: 15px 0;
-        background: linear-gradient(135deg, #f8e1a3, #ffedbc, #f8e1a3, #ffedbc );
-        z-index: 1000; /* Memastikan tombol tetap di atas konten lain */
-        overflow: hidden;
-    }
+            position: absolute;
+            bottom: 0px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 15px 0;
+            background: white;
+            /* border-radius: 10px; */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
     
     .icon-button {
         background: none;
@@ -380,10 +380,6 @@
         <p class="alamat"><strong>Lokasi Acara:</strong><br>Gedung Lasharan Garden<br>Jl. Abdullah Dg. Sirua No.106<br>Makassar</p>
     </div>
     </div>
-    
-    <audio id="backgroundAudio" autoplay loop>
-        <source src="https://github.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
-    </audio>
 
     <div class="bottom-bar disabled"> <!-- Tambahkan class 'disabled' di sini -->
         <button class="icon-button active-icon" onclick="showSlide(0)"><i class="fas fa-home"></i></button>
@@ -393,6 +389,10 @@
         <button class="icon-button" onclick="showSlide(4)"><i class="fa-solid fa-map-location"></i></button>
         <button class="icon-button" onclick="showSlide(5)"><i class="fas fa-times"></i></button>
     </div>
+
+    <audio id="backgroundAudio" autoplay loop>
+        <source src="https://github.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
+    </audio>
 
     <button id="muteButton" style="position: absolute;background: #ffffff70;border: none; color: #8B0000; bottom: 86px; right: 26px; width: 35px; height: 35px; border-radius: 20px; "><i id="muteIcon" class="fas fa-volume-up"></i></button>
 
