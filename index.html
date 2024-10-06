@@ -22,6 +22,7 @@
         align-items: center;
         position: relative;
         font-family: 'Poppins';
+        overflow: hidden;
     }
 
     .content {
@@ -56,6 +57,7 @@
         100% { opacity: 1; }
     }
     p, img, .maps, .box {
+        font-size: 13px;
         animation: contentAnimation 0.8s forwards;
     }
     @keyframes contentAnimation {
@@ -73,13 +75,13 @@
         /* border-radius: 10px; */
     }
     .icon-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        opacity: 0.8;
-        transition: opacity 0.3s, transform 0.3s;
-        margin: 0 5px;
-    }
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s, transform 0.3s;
+    margin: 0px 5px 20px 0px;
+}
     .active-icon {
         opacity: 1;
         animation: bottom 2s infinite;
@@ -238,7 +240,7 @@
     }
 
     .doa {
-        margin-bottom: -10px;
+        margin-bottom: -5px;
         font-size: 18px;
         font-weight: bold;
         color: #8B0000;
@@ -256,9 +258,6 @@
         }
     }
     
-    .isidoa {
-        font-size: 15px;
-    }
     .riwayat {
         font-size: 12px;
         margin-top: -5px;
@@ -324,6 +323,18 @@
         font-size: 35px;
         margin: 20px 0px;
         color: #8B0000;
+        animation: and 1s ease forwards;
+    }
+
+    @keyframes and {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 
     .akad {
@@ -371,7 +382,6 @@
     .countdown {
         display: flex;
         justify-content: space-around;
-        font-size: 24px;
         margin-top: 20px;
     }
     .box {
@@ -382,17 +392,20 @@
         justify-content: center;
         align-items: center;
         padding: 5px;
-        /* border: 1px solid #000; */
         border-radius: 5px;
-        width: 55px;
+        width: 45px;
         margin: 0px 5px;
         font-weight: bold;
-        font-size: 25px;
+        font-size: 17px;
     }
     .label {
-        font-size: 14px;
+        font-size: 12px;
         margin-top: -5px;
         font-weight: normal;
+    }
+
+    .kepada, .judul, .dan {
+        font-size: 15px;
     }
 
 </style>
@@ -400,8 +413,8 @@
 <body>
 
     <div class="container">
-        <img src="bunga.png" class="kiribawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -55px;left: -85px;">
-        <img src="bunga.png" class="kananbawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -55px;right: -85px;">
+        <img src="bunga.png" class="kiribawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -35px;left: -85px;">
+        <img src="bunga.png" class="kananbawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -35px;right: -85px;">
         <img src="bunga.png" class="kiriatas" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;top: -110px;left: -90px;">
         <img src="bunga.png" class="kananatas" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;top: -110px;right: -90px;">
     </div>
@@ -488,7 +501,7 @@
         <source src="https://github.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
     </audio>
 
-    <button id="muteButton" style="position: absolute;background: #ffffff70;border: none; color: #8B0000; bottom: 86px; right: 26px; width: 35px; height: 35px; border-radius: 20px; "><i id="muteIcon" class="fas fa-volume-up"></i></button>
+    <button id="muteButton" style="position: absolute;background: #ffffff70;border: none;color: #8B0000;bottom: 95px;right: 25px;width: 30px;height: 30px;border-radius: 20px;"><i id="muteIcon" class="fas fa-volume-up strikethrough"></i></button>
 
 <script>
 
