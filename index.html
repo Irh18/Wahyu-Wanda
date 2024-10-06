@@ -401,27 +401,14 @@
             backgroundAudio.play(); // Memainkan audio setiap kali tombol diklik
         }
     
-        function openFullscreen() {
-            var elem = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.mozRequestFullScreen) { /* Firefox */
-                elem.mozRequestFullScreen();
-            } else if (elem.webkitRequestFullScreen) { /* Chrome, Safari & Opera */
-                elem.webkitRequestFullScreen();
-            } else if (elem.msRequestFullScreen) { /* IE/Edge */
-                elem.msRequestFullScreen();
-            }
-            }
-
         function handleClick() {
             showSlide(1); // Menampilkan slide ke-1 setelah diklik
             
             // Menghapus class 'disabled' dari bottom bar
             bottomBar.classList.remove('disabled');
             
-            // Membuat halaman menjadi full screen
-            openFullscreen();
+            // Menyembunyikan bar HTML di perangkat mobile
+            window.scrollTo(0, 1);
         }
                 
         let isMuted = false; // Variabel untuk menyimpan status mute
