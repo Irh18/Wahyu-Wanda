@@ -302,8 +302,9 @@
     overflow: hidden;
 }
 
-.bottom-bar.disabled {
-    display: none; /* Menyembunyikan bottom bar ketika class 'disabled' ditambahkan */
+.disabled {
+    pointer-events: none; /* Mencegah interaksi dengan elemen */
+    opacity: 1; /* Menambahkan efek transparansi */
 }
 
 </style>
@@ -403,28 +404,35 @@
 
 <script>
 
-let currentSlide = 0;
+    let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const iconButtons = document.querySelectorAll('.icon-button');
     const backgroundAudio = document.getElementById('backgroundAudio');
     const bottomBar = document.querySelector('.bottom-bar');
 
     function showSlide(index) {
-        currentSlide = index;
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
-        iconButtons.forEach((iconButton, i) => {
-            iconButton.classList.toggle('active-icon', i === index);
-        });
-        backgroundAudio.play(); // Memainkan audio setiap kali tombol diklik
-    }
+    currentSlide = index;
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+    });
+    iconButtons.forEach((iconButton, i) => {
+        iconButton.classList.toggle('active-icon', i === index);
+    });
+    backgroundAudio.play(); // Memainkan audio setiap kali tombol diklik
+}
 
-    function handleClick() {
-        showSlide(1); // Menampilkan slide ke-1 setelah diklik
-        // Hapus class 'disabled' untuk menampilkan bottom bar
-        bottomBar.classList.remove('disabled');
-    }
+function handleClick() {
+    showSlide(1); // Menampilkan slide ke-1 setelah diklik
+    document.getElementById('bukaundangan').style.display = 'none'; // Menyembunyikan teks "Nama Tamu"
+
+    // Menghapus class 'disabled' dari bottom bar
+    bottomBar.classList.remove('disabled');
+}
+
+// Inisialisasi: Menonaktifkan elemen bottom bar saat halaman dimuat
+window.addEventListener('DOMContentLoaded', () => {
+    bottomBar.classList.add('disabled');
+});
 
     let isMuted = false; // Variabel untuk menyimpan status mute
 
