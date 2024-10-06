@@ -35,6 +35,11 @@
         padding: 25px;
     }
 
+    .disabled {
+        pointer-events: none; /* Mencegah interaksi dengan elemen */
+        opacity: 1; /* Menambahkan efek transparansi */
+    }
+
     .active {
         display: flex; /* Tampilkan slide yang aktif */
         opacity: 1;
@@ -283,6 +288,24 @@
         font-weight: normal;
     }
 
+    .content {
+    /* background-color: rgba(255, 255, 255, 0.9); */
+    width: 90%;
+    height: 86%;
+    margin-bottom: 45px;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+    overflow: hidden;
+}
+
+.bottom-bar.disabled {
+    display: none; /* Menyembunyikan bottom bar ketika class 'disabled' ditambahkan */
+}
+
 </style>
 </head>
 <body>
@@ -293,7 +316,8 @@
         <img src="bunga.png" class="kiriatas" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;top: -110px;left: -90px;">
         <img src="bunga.png" class="kananatas" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;top: -110px;right: -90px;">
     </div>
-
+    
+    <div class="content">
     <div class="slide active">
         <p class="judul">The Wedding Of</p>
         <p class="panggilan">Wahyu</p>
@@ -366,7 +390,7 @@
         <source src="https://github.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="bottom-bar"> <!-- Menghapus class 'disabled' di sini -->
+    <div class="bottom-bar disabled"> <!-- Tambahkan class 'disabled' di sini -->
         <button class="icon-button active-icon" onclick="showSlide(0)"><i class="fas fa-home"></i></button>
         <button class="icon-button" onclick="showSlide(1)"><i class="fa-solid fa-book-quran"></i></button>
         <button class="icon-button" onclick="showSlide(2)"><i class="fas fa-heart"></i></button>
@@ -379,7 +403,7 @@
 
 <script>
 
-    let currentSlide = 0;
+let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const iconButtons = document.querySelectorAll('.icon-button');
     const backgroundAudio = document.getElementById('backgroundAudio');
@@ -398,6 +422,8 @@
 
     function handleClick() {
         showSlide(1); // Menampilkan slide ke-1 setelah diklik
+        // Hapus class 'disabled' untuk menampilkan bottom bar
+        bottomBar.classList.remove('disabled');
     }
 
     let isMuted = false; // Variabel untuk menyimpan status mute
