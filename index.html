@@ -407,8 +407,11 @@
             // Menghapus class 'disabled' dari bottom bar
             bottomBar.classList.remove('disabled');
             
-            // Menyembunyikan bar HTML di perangkat mobile
+            // Menyembunyikan address bar di perangkat mobile
             window.scrollTo(0, 1);
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 100);
         }
                 
         let isMuted = false; // Variabel untuk menyimpan status mute
