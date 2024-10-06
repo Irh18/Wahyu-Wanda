@@ -429,6 +429,7 @@ window.addEventListener('DOMContentLoaded', () => {
     bottomBar.classList.add('disabled');
 });
 
+
     let isMuted = false; // Variabel untuk menyimpan status mute
 
     const muteButton = document.getElementById('muteButton');
@@ -448,39 +449,95 @@ window.addEventListener('DOMContentLoaded', () => {
         isMuted = !isMuted; // Toggle status mute
     });
 
-    function getTargetDate() {
-                const tanggalText = document.getElementById("tanggalresepsi").innerText;
-                const dateParts = tanggalText.match(/(\d{1,2}) (\w+) (\d{4})/);
-                const day = dateParts[1];
-                const month = new Date(Date.parse(dateParts[2] + " 1")).getMonth() + 1; // Mengonversi nama bulan ke angka
-                const year = dateParts[3];
-                return new Date(year, month - 1, day, 19, 0, 0).getTime(); // Mengatur jam ke 19:00
+    let editing = false;
+
+document.addEventListener('DOMContentLoaded', loadFromLocalStorage);
+
+function toggleEdit() {
+    if (editing) {
+        // If already editing, just toggle off
+        editing = false;
+        const elements = document.querySelectorAll('.content h1, .content p');
+        const editButtons = document.getElementById('editButtons');
+
+        elements.forEach(el => {
+            el.contentEditable = false;
+            el.style.border = 'none';
+        });
+
+        editButtons.style.display = 'none';
+        return;
+    }
+
+    // Prompt for PIN using SweetAlert
+    Swal.fire({
+        title: 'Masukkan PIN untuk mengedit',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Verifikasi',
+        cancelButtonText: 'Batal',
+        preConfirm: (inputValue) => {
+            if (inputValue !== "182598") {
+                Swal.showValidationMessage('PIN salah. Silakan coba lagi.');
             }
+            return inputValue;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            editing = true;
+            const elements = document.querySelectorAll('.content h1, .content p');
+            const editButtons = document.getElementById('editButtons');
 
-            let targetDate = getTargetDate();
+            elements.forEach(el => {
+                el.contentEditable = true;
+                el.style.border = '1px dashed #ccc';
+            });
 
-            const countdownFunction = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
+            editButtons.style.display = 'block';
+        }
+    });
+}
 
-                // Hitung waktu
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Menampilkan hasil dalam elemen yang sesuai
-                document.getElementById("daysValue").innerHTML = days < 10 ? "0" + days : days;
-                document.getElementById("hoursValue").innerHTML = hours < 10 ? "0" + hours : hours;
-                document.getElementById("minutesValue").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-                document.getElementById("secondsValue").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-                // Jika hitung mundur selesai, tampilkan pesan
-                if (distance < 0) {
-                    clearInterval(countdownFunction);
-                    document.querySelector(".countdown").innerHTML = "Acara Sedang Berlangsung";
-                }
-            }, 1000);
+function saveChanges() {
+    const elements = document.querySelectorAll('.content h1, .content p');
+    elements.forEach(el => {
+        el.contentEditable = false;
+        el.style.border = 'none';
+        saveToLocalStorage(el);
+    });
+    toggleEdit(); // Hide the edit buttons and finalize editing
+}
+
+function cancelEdit() {
+    const elements = document.querySelectorAll('.content h1, .content p');
+    elements.forEach(el => {
+        el.contentEditable = false;
+        el.style.border = 'none';
+        // Optionally revert changes if necessary
+    });
+    toggleEdit(); // Hide the edit buttons and finalize editing
+}
+
+function saveToLocalStorage(el) {
+    const key = el.tagName + '_' + el.dataset.id; // Create a unique key using data-id
+    localStorage.setItem(key, el.innerText);
+}
+
+function loadFromLocalStorage() {
+    const elements = document.querySelectorAll('.content h1[data-id], .content p[data-id]');
+    elements.forEach(el => {
+        const key = el.tagName + '_' + el.dataset.id; // Use the same unique key
+        const savedContent = localStorage.getItem(key);
+        if (savedContent) {
+            el.innerText = savedContent;
+        }
+    });
+}
 
 </script>
 </body>
