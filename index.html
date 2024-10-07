@@ -69,7 +69,7 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        padding: 15px 0;
+        padding: 10px 0;
         background: linear-gradient(135deg, #f8e1a3, #ffedbc, #f8e1a3, #ffedbc );
         /* border-radius: 10px; */
     }
@@ -77,36 +77,41 @@
         background: none;
         border: none;
         cursor: pointer;
-        opacity: 0.8;
-        transition: opacity 0.3s, transform 0.3s;
-        margin: 0px 5px 0px 0px;
+        margin: 0px 2px 0px 2px;
     }
     .active-icon {
         opacity: 1;
-        animation: bottom 2s infinite;
         cursor: pointer;
     }
     
-    @keyframes bottom {
-        0% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.1) translateY(-5px);
-        }
-        100% {
-            transform: scale(1);
-        }
-    
-    }
     .icon-button i {
-        font-size: 30px;
+        font-size: 20px;
         color: #8B0000;
     }
+    
     @media (max-width: 600px) {
-        .icon-button i {
-    font-size: 16px;
-    padding: 5px;
+    .icon-button i {
+        font-size: 16px;
+        padding: 5px;
+            }
+    }
+
+    .active-icon i {
+        color: #ffffff;
+        background-color: #8B0000;
+        padding: 5px;
+        width: 30px;
+        height: 25px;
+        border-radius: 5px;
+        animation: fadeIn 3s forwards;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
         }
     }
 
@@ -407,6 +412,15 @@
         font-size: 15px;
     }
 
+    #tanggalCountdown {
+    font-size: 15px;
+    /* font-weight: bold; */
+    background: #8B0000;
+    padding: 5px 55px;
+    border-radius: 5px;
+    color: white;
+}
+
 </style>
 </head>
 <body>
@@ -478,6 +492,7 @@
             <span class="label">Detik</span>
         </div>
         </div>
+        <p id="tanggalCountdown"></p>
     </div>
 
     <div class="slide">
@@ -562,27 +577,38 @@
         let targetDate = getTargetDate();
 
         const countdownFunction = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+    const now = new Date().getTime();
+    const distance = targetDate - now;
 
-        // Hitung waktu
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Hitung waktu
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Menampilkan hasil dalam elemen yang sesuai
-        document.getElementById("daysValue").innerHTML = days < 10 ? "0" + days : days;
-        document.getElementById("hoursValue").innerHTML = hours < 10 ? "0" + hours : hours;
-        document.getElementById("minutesValue").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-        document.getElementById("secondsValue").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+    // Menampilkan hasil dalam elemen yang sesuai
+    document.getElementById("daysValue").innerHTML = days < 10 ? "0" + days : days;
+    document.getElementById("hoursValue").innerHTML = hours < 10 ? "0" + hours : hours;
+    document.getElementById("minutesValue").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+    document.getElementById("secondsValue").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-        // Jika hitung mundur selesai, tampilkan pesan
-        if (distance < 0) {
-            clearInterval(countdownFunction);
-            document.querySelector(".countdown").innerHTML = "Acara Sedang Berlangsung";
-            }
-        }, 1000);
+    // Menampilkan tanggal dalam format yang diinginkan
+    const tanggal = new Date(targetDate);
+    const tanggalString = `${tanggal.getDate().toString().padStart(2, '0')} ${getBulan(tanggal.getMonth())} ${tanggal.getFullYear()}`;
+    document.getElementById("tanggalCountdown").innerHTML = tanggalString;
+
+    // Jika hitung mundur selesai, tampilkan pesan
+    if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.querySelector(".countdown").innerHTML = "Acara Sedang Berlangsung";
+    }
+}, 1000);
+
+// Fungsi untuk mengonversi bulan ke string
+function getBulan(bulan) {
+    const bulanString = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    return bulanString[bulan];
+}
 
         </script>
     </body>
