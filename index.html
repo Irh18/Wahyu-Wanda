@@ -78,6 +78,8 @@
         border: none;
         cursor: pointer;
         margin: 0px 2px 0px 2px;
+        z-index: 1; /* tambahkan properti ini */
+
     }
     .active-icon {
         opacity: 1;
@@ -96,14 +98,24 @@
             }
     }
 
+    .indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 42px;
+    margin-bottom: 6px;
+    background-color: #8B0000;
+    transition: left 0.3s ease-in-out;
+    z-index: 0;
+    border-radius: 5px;
+}
+
     .active-icon i {
         color: #ffffff;
-        background-color: #8B0000;
-        padding: 5px;
-        width: 30px;
-        height: 25px;
+        padding: 10px;
         border-radius: 5px;
-        animation: fadeIn 3s forwards;
+        animation: fadeIn 0.8s forwards;
     }
 
     @keyframes fadeIn {
@@ -513,10 +525,11 @@
         <button class="icon-button" onclick="showSlide(3)"><i class="fa-solid fa-calendar-days"></i></button>
         <button class="icon-button" onclick="showSlide(4)"><i class="fa-solid fa-map-location"></i></button>
         <button class="icon-button" onclick="showSlide(5)"><i class="fa-solid fa-panorama"></i></button>
+        <div class="indicator"></div>
     </div>
 
     <audio id="backgroundAudio" autoplay loop>
-        <source src="https://github.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
+        <source src="https://githb.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
     </audio>
 
     <button id="muteButton" style="position: absolute;background: #ffffff70;border: none;color: #8B0000;bottom: 85px;right: 25px;width: 30px;height: 30px;border-radius: 20px;"><i id="muteIcon" class="fas fa-volume-up strikethrough"></i></button>
@@ -548,6 +561,15 @@
             }, 1000);
             // Menghapus class 'disabled' dari bottom bar
             bottomBar.classList.remove('disabled');
+                // Mengatur indikator ke posisi slide ke-2
+    const indicator = document.querySelector('.indicator');
+    const iconButtons = document.querySelectorAll('.icon-button');
+    const buttonWidth = iconButtons[1].offsetWidth; // dapatkan lebar tombol ke-2
+    const buttonLeft = iconButtons[1].offsetLeft; // dapatkan posisi kiri tombol ke-2
+    const indicatorWidth = indicator.offsetWidth; // dapatkan lebar indikator
+    const leftPosition = buttonLeft + (buttonWidth - indicatorWidth) / 2; // hitung posisi kiri indikator
+    indicator.style.left = `${leftPosition}px`;
+
         }
                 
         let isMuted = false; // Variabel untuk menyimpan status mute
@@ -613,6 +635,19 @@ function getBulan(bulan) {
     const bulanString = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
     return bulanString[bulan];
 }
+
+
+const indicator = document.querySelector('.indicator');
+
+iconButtons.forEach((iconButton, index) => {
+    iconButton.addEventListener('click', () => {
+        const buttonWidth = iconButton.offsetWidth; // dapatkan lebar tombol
+        const buttonLeft = iconButton.offsetLeft; // dapatkan posisi kiri tombol
+        const indicatorWidth = indicator.offsetWidth; // dapatkan lebar indikator
+        const leftPosition = buttonLeft + (buttonWidth - indicatorWidth) / 2; // hitung posisi kiri indikator
+        indicator.style.left = `${leftPosition}px`;
+    });
+});
 
         </script>
     </body>
