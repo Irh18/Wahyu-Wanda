@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -74,37 +75,33 @@
         /* border-radius: 10px; */
     }
     .icon-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        margin: 0px 2px 0px 2px;
-        z-index: 1; /* tambahkan properti ini */
-
-    }
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 5px 5px 0px 5px;
+    z-index: 1;
+}
     .active-icon {
         opacity: 1;
         cursor: pointer;
     }
     
     .icon-button i {
-        font-size: 20px;
-        color: #8B0000;
-    }
+    padding: 5px;
+    height: 30px;
+    font-size: 20px;
+    color: #8B0000;
+}
     
-    @media (max-width: 600px) {
-    .icon-button i {
-        font-size: 16px;
-        padding: 5px;
-            }
-    }
+
 
     .indicator {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 40px;
-    height: 42px;
-    margin-bottom: 6px;
+    height: 40px;
+    margin-bottom: 15px;
     background-color: #8B0000;
     transition: left 0.3s ease-in-out;
     z-index: 0;
@@ -113,7 +110,6 @@
 
     .active-icon i {
         color: #ffffff;
-        padding: 10px;
         border-radius: 5px;
         animation: fadeIn 0.8s forwards;
     }
@@ -428,7 +424,7 @@
     font-size: 15px;
     /* font-weight: bold; */
     background: #8B0000;
-    padding: 5px 55px;
+    padding: 5px 35px;
     border-radius: 5px;
     color: white;
 }
@@ -487,7 +483,7 @@
         <p class="resepsi">Resepsi</p>
         <img src="vintageacara.png" class="vintagedoa">
         <p id="tanggalresepsi" class="tanggal">Hari : Senin, 11 November 2024</p>
-        <p class="pukul">Pukul : 19.00 WITA - Selesai</p>
+        <p id="pukulresepsi"class="pukul">Pukul : 19.00 WITA - Selesai</p>
         <p class="tempat">Tempat : Gedung Lasharan Garden<br>Jl. Abdullah Dg. Sirua No.106 Makassar</p>
 
         <div class="countdown">
@@ -529,7 +525,7 @@
     </div>
 
     <audio id="backgroundAudio" autoplay loop>
-        <source src="https://githb.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
+        <source src="https://github.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
     </audio>
 
     <button id="muteButton" style="position: absolute;background: #ffffff70;border: none;color: #8B0000;bottom: 85px;right: 25px;width: 30px;height: 30px;border-radius: 20px;"><i id="muteIcon" class="fas fa-volume-up strikethrough"></i></button>
@@ -592,13 +588,28 @@
         });
     
         function getTargetDate() {
-            const tanggalText = document.getElementById("tanggalresepsi").innerText;
-            const dateParts = tanggalText.match(/(\d{1,2}) (\w+) (\d{4})/);
-            const day = dateParts[1];
-            const month = new Date(Date.parse(dateParts[2] + " 1")).getMonth() + 1; // Mengonversi nama bulan ke angka
-            const year = dateParts[3];
-            return new Date(year, month - 1, day, 19, 0, 0).getTime(); // Mengatur jam ke 19:00
-        }
+    const tanggalText = document.getElementById("tanggalresepsi").innerText;
+    const dateParts = tanggalText.match(/(\d{1,2}) (\w+) (\d{4})/);
+    const day = dateParts[1];
+    const monthName = dateParts[2].toLowerCase(); // Mengubah nama bulan menjadi lowercase
+    const year = dateParts[3];
+
+    // Array bulan dalam bahasa Indonesia
+    const bulanIndonesia = ["januari", "februari", "maret", "april", "mei", "juni", "juli", "agustus", "september", "oktober", "november", "desember"];
+    
+    // Cari indeks bulan dari array
+    const month = bulanIndonesia.indexOf(monthName) + 1;
+
+    // Ambil waktu dari elemen pukul
+    const pukulText = document.getElementById("pukulresepsi").innerText;
+    const timeParts = pukulText.match(/(\d{1,2})\.(\d{2})/); // Mencari pola jam dan menit seperti 19.00
+    const hours = parseInt(timeParts[1], 10);
+    const minutes = parseInt(timeParts[2], 10);
+
+    // Mengembalikan waktu target dengan jam dan menit yang diambil dari teks
+    return new Date(year, month - 1, day, hours, minutes, 0).getTime();
+}
+
 
         let targetDate = getTargetDate();
 
@@ -618,10 +629,11 @@
     document.getElementById("minutesValue").innerHTML = minutes < 10 ? "0" + minutes : minutes;
     document.getElementById("secondsValue").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-    // Menampilkan tanggal dalam format yang diinginkan
-    const tanggal = new Date(targetDate);
-    const tanggalString = `${tanggal.getDate().toString().padStart(2, '0')} ${getBulan(tanggal.getMonth())} ${tanggal.getFullYear()}`;
-    document.getElementById("tanggalCountdown").innerHTML = tanggalString;
+// Menampilkan tanggal dalam format yang diinginkan
+const tanggal = new Date(targetDate);
+const hari = tanggal.toLocaleDateString('id-ID', { weekday: 'long' }); // Mendapatkan nama hari dalam bahasa Indonesia
+const tanggalString = `${hari}, ${tanggal.getDate().toString().padStart(2, '0')} ${getBulan(tanggal.getMonth())} ${tanggal.getFullYear()}`;
+document.getElementById("tanggalCountdown").innerHTML = tanggalString;
 
     // Jika hitung mundur selesai, tampilkan pesan
     if (distance < 0) {
