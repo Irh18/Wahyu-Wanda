@@ -38,6 +38,7 @@
         /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
         overflow: hidden;
     }
+
     .slide {
         display: none;
         flex-direction: column;
@@ -45,27 +46,33 @@
         align-items: center;
         height: 100%;
         text-align: center;
-        padding: 25px;
+        /*padding: 25px;*/
     }
+
     .active {
         display: flex; /* Tampilkan slide yang aktif */
         opacity: 1;
         animation: fadeIn 0.8s forwards;
     }
+
     @keyframes fadeIn {
         0% { opacity: 0; }
         100% { opacity: 1; }
     }
+
     p, img, .maps, .box {
         font-size: 13px;
         animation: contentAnimation 0.8s forwards;
     }
+
     @keyframes contentAnimation {
         0% { transform: translateY(20px); opacity: 0; }
         100% { transform: translateY(0); opacity: 1; }
     }
+
     .bottom-bar {
         position: absolute;
+        left: 0px;
         bottom: 0px;
         display: flex;
         justify-content: center;
@@ -74,39 +81,39 @@
         background: linear-gradient(135deg, #f8e1a3, #ffedbc, #f8e1a3, #ffedbc );
         /* border-radius: 10px; */
     }
+
     .icon-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin: 5px 5px 0px 5px;
-    z-index: 1;
-}
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin: 5px 5px 0px 5px;
+        z-index: 1;
+    }
+
     .active-icon {
         opacity: 1;
         cursor: pointer;
     }
     
     .icon-button i {
-    padding: 5px;
-    height: 30px;
-    font-size: 20px;
-    color: #8B0000;
-}
-    
-
+        padding: 5px;
+        height: 30px;
+        font-size: 20px;
+        color: #8B0000;
+    }
 
     .indicator {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40px;
-    height: 40px;
-    margin-bottom: 15px;
-    background-color: #8B0000;
-    transition: left 0.3s ease-in-out;
-    z-index: 0;
-    border-radius: 5px;
-}
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        margin-bottom: 15px;
+        background-color: #8B0000;
+        transition: left 0.3s ease-in-out;
+        z-index: 0;
+        border-radius: 5px;
+    }
 
     .active-icon i {
         color: #ffffff;
@@ -174,12 +181,9 @@
             transform: rotate(360deg);
         }
     }
-
-    .small-text {
-    font-size: 10px;
-    }
     
     .panggilan {
+        margin: 25px;
         color: #8B0000;
         font-family: 'Playfair Display', serif;
         font-size: 40px;
@@ -304,7 +308,7 @@
         margin-bottom: -10px;
     }
 
-    .nama {
+    .nama, .gallery {
         font-family: 'Playfair Display', serif;
         color: #8B0000;
         font-size: 26px;
@@ -410,6 +414,7 @@
         font-weight: bold;
         font-size: 17px;
     }
+
     .label {
         font-size: 12px;
         margin-top: -5px;
@@ -421,39 +426,88 @@
     }
 
     #tanggalCountdown {
-    font-size: 15px;
-    /* font-weight: bold; */
-    background: #8B0000;
-    padding: 5px 35px;
-    border-radius: 5px;
-    color: white;
-}
+        font-size: 15px;
+        /* font-weight: bold; */
+        background: #8B0000;
+        padding: 5px 35px;
+        border-radius: 5px;
+        color: white;
+    }
 
-* {
-    -webkit-tap-highlight-color: transparent;
-}
+    .scroll-box {
+        width: 250px;
+        height: 375px;
+        background-color: white;
+        border: 5px solid white;
+        overflow-y: scroll;
+        border-radius: 10px;
+        /* padding-top: 33px; */
+        margin: 0px;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+    }
+
+    .scroll-box::-webkit-scrollbar-thumb {
+        background-color: #e0e0e0; /* Warna scrollbar */
+        border-radius: 10px; /* Membulatkan scrollbar */
+    }
+
+    .photo-box {
+        width: 100%;
+        /* height: 360px; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        margin-bottom: 10px;
+        scroll-snap-align: start; /* Setiap gambar akan berhenti di bagian awalnya */
+    }
+
+    .photo-box img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover; /* Gambar menyesuaikan ukuran kotak tanpa terdistorsi */
+        border-radius: 5px;
+    }
+
+    .sampul {
+        position: absolute; /* Agar gambar tidak memengaruhi tata letak lainnya */
+        top: 0;
+        left: 0;
+        width: 100%; /* Mengisi lebar slide */
+        height: 100%; /* Mengisi tinggi slide */
+        object-fit: cover; /* Menjaga proporsi gambar */
+        z-index: -1; /* Menempatkan gambar di belakang konten */
+    }
+
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
 
 </style>
 </head>
 <body>
 
     <div class="container">
-        <img src="bunga.png" class="kiribawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -55px;left: -85px;">
-        <img src="bunga.png" class="kananbawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -55px;right: -85px;">
+        <img src="bunga.png" class="kiribawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -45px;left: -85px;">
+        <img src="bunga.png" class="kananbawah" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;bottom: -45px;right: -85px;">
         <img src="bunga.png" class="kiriatas" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;top: -110px;left: -90px;">
         <img src="bunga.png" class="kananatas" style="position: absolute;width: 175px;margin: 20px auto;opacity: 1;top: -110px;right: -90px;">
     </div>
+
     
     <div class="content">
     <div class="slide active">
-        <p class="judul">The Wedding Of</p>
+        <img src="sampul.png" class="sampul" alt="Latar Belakang">
+        <p class="judul" style="margin-top: 240px;">The Wedding Of</p>
         <p class="panggilan">Wahyu</p>
-        <p class="dan">DAN</p>
+        <p class="dan" style="margin-top: -17px;">DAN</p>
         <p class="panggilan">Wanda</p><br>
         <p class="kepada">Kepada Yth:<br><strong>Nama Tamu</strong></p>
         <img src="vintage.png" alt="vintage" class="vintage">
         <p id="bukaundangan" class="buka" onclick="handleClick()">Buka Undangan</p>
     </div>
+
 
     <div class="slide">
         <img src="vintagedoa.png" class="vintagedoa">
@@ -462,6 +516,7 @@
         <p class="riwayat">~ HR. Abu Daud & Tirmidzi ~</p>
         <img src="vintagedoa.png" class="vintagedoa">
     </div>
+
 
     <div class="slide">
         <p class="bismillah"><em>Bismillahirrahmanirrahim</em></p>
@@ -472,6 +527,7 @@
         <p class="nama">Wanda Indrasuari</p>
         <p class="anakke">(Putri bungsu dari Bpk. Abd. Jalil Dg. Tulung & Ibu Rostini)</p><br>
     </div>
+
         
     <div class="slide">
         <p class="akad">Akad Nikah</p>
@@ -507,12 +563,38 @@
         <p id="tanggalCountdown"></p>
     </div>
 
+
     <div class="slide">
         <p class="googlemaps">Google Maps</p>
         <iframe class="maps" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5619.666433009203!2d119.44336429924816!3d-5.15121969213667!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee2d07c5c57e7%3A0x9ac8c5526ecc9e3c!2sSTIM%20Lasharan%20Jaya%20Makassar!5e0!3m2!1sid!2sid!4v1728178837728!5m2!1sid!2sid"></iframe>
         <p class="alamat"><strong>Lokasi Acara:</strong><br>Gedung Lasharan Garden<br>Jl. Abdullah Dg. Sirua No.106<br>Makassar</p>
     </div>
-    </div>
+    
+
+    <div class="slide">
+        <p class="gallery">Our Gallery</p>
+        <div class="scroll-box">
+            <div class="photo-box">
+                <img src="1.jpeg" alt="Foto 1">
+            </div>
+            <div class="photo-box">
+                <img src="2.jpeg" alt="Foto 2">
+            </div>
+            <div class="photo-box">
+                <img src="3.jpeg" alt="Foto 3">
+            </div>
+            <div class="photo-box">
+                <img src="4.jpeg" alt="Foto 4">
+            </div>
+            <div class="photo-box">
+                <img src="5.jpeg" alt="Foto 5">
+            </div>
+            <div class="photo-box">
+                <img src="6.jpeg" alt="Foto 6">
+            </div>
+        </div>
+    </div>       
+
 
     <div class="bottom-bar disabled"> <!-- Tambahkan class 'disabled' di sini -->
         <button class="icon-button active-icon" onclick="showSlide(0)"><i class="fa-solid fa-envelope-open-text"></i></i></button>
@@ -524,96 +606,86 @@
         <div class="indicator"></div>
     </div>
 
+
     <audio id="backgroundAudio" autoplay loop>
         <source src="https://github.com/Irh18/WeddingInvitation/raw/0c9dd506cf131248cecdfb27a317834fbdf33164/Wedding%20Nasheed%20Ala%20Jabiri%20Nisa%20Muhammad%20Al%20Muqit%20English%20Translation%20shorts%20youtubeshorts.mp3" type="audio/mpeg">
     </audio>
 
+
     <button id="muteButton" style="position: absolute;background: #ffffff70;border: none;color: #8B0000;bottom: 85px;right: 25px;width: 30px;height: 30px;border-radius: 20px;"><i id="muteIcon" class="fas fa-volume-up strikethrough"></i></button>
+
 
 <script>
 
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const iconButtons = document.querySelectorAll('.icon-button');
-        const backgroundAudio = document.getElementById('backgroundAudio');
-    
-        const bottomBar = document.querySelector('.bottom-bar');
-    
-        function showSlide(index) {
-            currentSlide = index;
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
-            });
-            iconButtons.forEach((iconButton, i) => {
-                iconButton.classList.toggle('active-icon', i === index);
-            });
-            backgroundAudio.play(); // Memainkan audio setiap kali tombol diklik
-        }
-    
-        function handleClick() {
-            showSlide(1); // Menampilkan slide ke-1 setelah diklik
-            setTimeout(function() {
-                window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-            }, 1000);
-            // Menghapus class 'disabled' dari bottom bar
-            bottomBar.classList.remove('disabled');
-                // Mengatur indikator ke posisi slide ke-2
-    const indicator = document.querySelector('.indicator');
+    let targetDate = getTargetDate();
+    let isMuted = false; // Variabel untuk menyimpan status mute
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
     const iconButtons = document.querySelectorAll('.icon-button');
-    const buttonWidth = iconButtons[1].offsetWidth; // dapatkan lebar tombol ke-2
-    const buttonLeft = iconButtons[1].offsetLeft; // dapatkan posisi kiri tombol ke-2
-    const indicatorWidth = indicator.offsetWidth; // dapatkan lebar indikator
-    const leftPosition = buttonLeft + (buttonWidth - indicatorWidth) / 2; // hitung posisi kiri indikator
-    indicator.style.left = `${leftPosition}px`;
-
-        }
-                
-        let isMuted = false; // Variabel untuk menyimpan status mute
+    const backgroundAudio = document.getElementById('backgroundAudio');
+    const bottomBar = document.querySelector('.bottom-bar');
     
-        const muteButton = document.getElementById('muteButton');
-        const muteIcon = document.getElementById('muteIcon');
-        muteButton.addEventListener('click', () => {
-            if (isMuted) {
-                backgroundAudio.muted = false; // Unmute
-                muteIcon.classList.remove('fa-volume-mute'); // Hapus ikon mute
-                muteIcon.classList.add('fa-volume-up'); // Ganti ikon ke volume up
-                muteIcon.classList.remove('strikethrough'); // Hapus coretan
-            } else {
-                backgroundAudio.muted = true; // Mute
-                muteIcon.classList.remove('fa-volume-up'); // Hapus ikon volume up
-                muteIcon.classList.add('fa-volume-mute'); // Ganti ikon ke mute
-                muteIcon.classList.add('strikethrough'); // Tambah coretan
-            }
-            isMuted = !isMuted; // Toggle status mute
+
+    function showSlide(index) {
+        currentSlide = index;
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
         });
-    
-        function getTargetDate() {
-    const tanggalText = document.getElementById("tanggalresepsi").innerText;
-    const dateParts = tanggalText.match(/(\d{1,2}) (\w+) (\d{4})/);
-    const day = dateParts[1];
-    const monthName = dateParts[2].toLowerCase(); // Mengubah nama bulan menjadi lowercase
-    const year = dateParts[3];
-
-    // Array bulan dalam bahasa Indonesia
-    const bulanIndonesia = ["januari", "februari", "maret", "april", "mei", "juni", "juli", "agustus", "september", "oktober", "november", "desember"];
-    
-    // Cari indeks bulan dari array
-    const month = bulanIndonesia.indexOf(monthName) + 1;
-
-    // Ambil waktu dari elemen pukul
-    const pukulText = document.getElementById("pukulresepsi").innerText;
-    const timeParts = pukulText.match(/(\d{1,2})\.(\d{2})/); // Mencari pola jam dan menit seperti 19.00
-    const hours = parseInt(timeParts[1], 10);
-    const minutes = parseInt(timeParts[2], 10);
-
-    // Mengembalikan waktu target dengan jam dan menit yang diambil dari teks
-    return new Date(year, month - 1, day, hours, minutes, 0).getTime();
-}
+        iconButtons.forEach((iconButton, i) => {
+            iconButton.classList.toggle('active-icon', i === index);
+        });
+        backgroundAudio.play(); // Memainkan audio setiap kali tombol diklik
+    }
 
 
-        let targetDate = getTargetDate();
+    function handleClick() {
+        showSlide(1); // Menampilkan slide ke-1 setelah diklik
+        setTimeout(function() {
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+        }, 1000);
+        // Menghapus class 'disabled' dari bottom bar
+        bottomBar.classList.remove('disabled');
+        // Mengatur indikator ke posisi slide ke-2
+        const indicator = document.querySelector('.indicator');
+        const iconButtons = document.querySelectorAll('.icon-button');
+        const buttonWidth = iconButtons[1].offsetWidth; // dapatkan lebar tombol ke-2
+        const buttonLeft = iconButtons[1].offsetLeft; // dapatkan posisi kiri tombol ke-2
+        const indicatorWidth = indicator.offsetWidth; // dapatkan lebar indikator
+        const leftPosition = buttonLeft + (buttonWidth - indicatorWidth) / 2; // hitung posisi kiri indikator
+        indicator.style.left = `${leftPosition}px`;
+    }
 
-        const countdownFunction = setInterval(function() {
+            
+    // Fungsi Mute
+    const muteButton = document.getElementById('muteButton');
+    const muteIcon = document.getElementById('muteIcon');
+    muteButton.addEventListener('click', () => {
+    if (isMuted) {
+        backgroundAudio.muted = false; // Unmute
+        muteIcon.classList.remove('fa-volume-mute'); // Hapus ikon mute
+        muteIcon.classList.add('fa-volume-up'); // Ganti ikon ke volume up
+        muteIcon.classList.remove('strikethrough'); // Hapus coretan
+    } else {
+        backgroundAudio.muted = true; // Mute
+        muteIcon.classList.remove('fa-volume-up'); // Hapus ikon volume up
+        muteIcon.classList.add('fa-volume-mute'); // Ganti ikon ke mute
+        muteIcon.classList.add('strikethrough'); // Tambah coretan
+    }
+    isMuted = !isMuted; // Toggle status mute
+    });
+
+
+    function getTargetDate() {
+        const tanggalText = document.getElementById("tanggalresepsi").innerText;
+        const [day, monthName, year] = tanggalText.match(/(\d{1,2}) (\w+) (\d{4})/).slice(1);
+        const month = ["januari", "februari", "maret", "april", "mei", "juni", "juli", "agustus", "september", "oktober", "november", "desember"].indexOf(monthName.toLowerCase()) + 1;
+
+        const [hours, minutes] = document.getElementById("pukulresepsi").innerText.match(/(\d{1,2})\.(\d{2})/).slice(1).map(Number);
+        return new Date(year, month - 1, day, hours, minutes).getTime();
+    }
+
+
+    const countdownFunction = setInterval(function() {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
@@ -629,37 +701,38 @@
     document.getElementById("minutesValue").innerHTML = minutes < 10 ? "0" + minutes : minutes;
     document.getElementById("secondsValue").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-// Menampilkan tanggal dalam format yang diinginkan
-const tanggal = new Date(targetDate);
-const hari = tanggal.toLocaleDateString('id-ID', { weekday: 'long' }); // Mendapatkan nama hari dalam bahasa Indonesia
-const tanggalString = `${hari}, ${tanggal.getDate().toString().padStart(2, '0')} ${getBulan(tanggal.getMonth())} ${tanggal.getFullYear()}`;
-document.getElementById("tanggalCountdown").innerHTML = tanggalString;
+    // Menampilkan tanggal dalam format yang diinginkan
+    const tanggal = new Date(targetDate);
+    const hari = tanggal.toLocaleDateString('id-ID', { weekday: 'long' }); // Mendapatkan nama hari dalam bahasa Indonesia
+    const tanggalString = `${hari}, ${tanggal.getDate().toString().padStart(2, '0')} ${getBulan(tanggal.getMonth())} ${tanggal.getFullYear()}`;
+    document.getElementById("tanggalCountdown").innerHTML = tanggalString;
 
-    // Jika hitung mundur selesai, tampilkan pesan
-    if (distance < 0) {
-        clearInterval(countdownFunction);
-        document.querySelector(".countdown").innerHTML = "Acara Sedang Berlangsung";
+        // Jika hitung mundur selesai, tampilkan pesan
+        if (distance < 0) {
+            clearInterval(countdownFunction);
+            document.querySelector(".countdown").innerHTML = "Acara Sedang Berlangsung";
+        }
+    }, 1000);
+
+
+    // Fungsi untuk mengonversi bulan ke string
+    function getBulan(bulan) {
+        const bulanString = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        return bulanString[bulan];
     }
-}, 1000);
-
-// Fungsi untuk mengonversi bulan ke string
-function getBulan(bulan) {
-    const bulanString = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-    return bulanString[bulan];
-}
 
 
-const indicator = document.querySelector('.indicator');
+    const indicator = document.querySelector('.indicator');
 
-iconButtons.forEach((iconButton, index) => {
-    iconButton.addEventListener('click', () => {
-        const buttonWidth = iconButton.offsetWidth; // dapatkan lebar tombol
-        const buttonLeft = iconButton.offsetLeft; // dapatkan posisi kiri tombol
-        const indicatorWidth = indicator.offsetWidth; // dapatkan lebar indikator
-        const leftPosition = buttonLeft + (buttonWidth - indicatorWidth) / 2; // hitung posisi kiri indikator
-        indicator.style.left = `${leftPosition}px`;
+    iconButtons.forEach((iconButton, index) => {
+        iconButton.addEventListener('click', () => {
+            const buttonWidth = iconButton.offsetWidth; // dapatkan lebar tombol
+            const buttonLeft = iconButton.offsetLeft; // dapatkan posisi kiri tombol
+            const indicatorWidth = indicator.offsetWidth; // dapatkan lebar indikator
+            const leftPosition = buttonLeft + (buttonWidth - indicatorWidth) / 2; // hitung posisi kiri indikator
+            indicator.style.left = `${leftPosition}px`;
+        });
     });
-});
 
         </script>
     </body>
