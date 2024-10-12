@@ -480,6 +480,20 @@
         z-index: -1; /* Menempatkan gambar di belakang konten */
     }
 
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-25px);
+        }
+    }
+
+    .photo-box:first-child img {
+        animation: bounce 3s ease-in-out infinite; /* Tambahkan animasi bounce pada gambar pertama */
+    }
+
+
     * {
         -webkit-tap-highlight-color: transparent;
     }
@@ -734,6 +748,17 @@
         });
     });
 
-        </script>
-    </body>
-    </html>
+
+    const scrollBox = document.querySelector('.scroll-box');
+
+    scrollBox.addEventListener('scroll', () => {
+        // Hentikan animasi bounce setelah pengguna menggulir
+        const photoBoxes = document.querySelectorAll('.photo-box img');
+        photoBoxes.forEach((img) => {
+            img.style.animation = 'none';
+        });
+    });
+
+</script>
+</body>
+</html>
