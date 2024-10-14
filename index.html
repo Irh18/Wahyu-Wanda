@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -75,7 +76,7 @@
         left: 0px;
         bottom: 0px;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         width: 100%;
         padding: 10px 0;
         background: linear-gradient(135deg, #f8e1a3, #ffedbc, #f8e1a3, #ffedbc );
@@ -183,10 +184,10 @@
     }
     
     .panggilan {
-        margin: 25px;
+        margin: 40px 0 60px 0px;
         color: #8B0000;
         font-family: 'Playfair Display', serif;
-        font-size: 40px;
+        font-size: 32px;
         animation: panggilan 1s ease forwards;
     }
 
@@ -232,10 +233,6 @@
 
     .disabled {
         display: none;
-    }
-
-    .dan {
-        margin: -25px;
     }
 
     .judul{
@@ -286,8 +283,9 @@
         border-radius: 10px;
     }
 
-    .googlemaps {
-        font-size: 20px;
+    .googlemaps, .gallery, .terimakasih {
+        font-family: 'Playfair Display', serif;
+        font-size: 26px;
         color: #8B0000;
         font-weight: bold;
         animation: googlemaps 1s ease forwards;
@@ -308,7 +306,7 @@
         margin-bottom: -10px;
     }
 
-    .nama, .gallery {
+    .nama {
         font-family: 'Playfair Display', serif;
         color: #8B0000;
         font-size: 26px;
@@ -421,7 +419,7 @@
         font-weight: normal;
     }
 
-    .kepada, .judul, .dan {
+    .kepada, .judul {
         font-size: 15px;
     }
 
@@ -493,6 +491,29 @@
         animation: bounce 3s ease-in-out infinite; /* Tambahkan animasi bounce pada gambar pertama */
     }
 
+    .bank {
+        color: #8B0000;
+        background: none;
+        border: none;
+        font-size: 20px;
+    }
+
+    #rekmandiri {
+        font-size: 15px;
+        margin-top: 10px;
+        padding: 5px 15px;
+        border-radius: 10px;
+        border: 1px solid #8b0000;
+        font-family: 'Poppins';
+        background: white;
+        animation: rek 0.8s forwards;
+    }
+
+    @keyframes rek {
+        0% { transform: translateY(20px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+
 
     * {
         -webkit-tap-highlight-color: transparent;
@@ -513,10 +534,8 @@
     <div class="content">
     <div class="slide active">
         <img src="sampul.png" class="sampul" alt="Latar Belakang">
-        <p class="judul" style="margin-top: 240px;">The Wedding Of</p>
-        <p class="panggilan">Wahyu</p>
-        <p class="dan" style="margin-top: -17px;">DAN</p>
-        <p class="panggilan">Wanda</p><br>
+        <p class="judul" style="margin-top: 350px;">The Wedding Of</p>
+        <p class="panggilan">Wahyu & Wanda</p>
         <p class="kepada">Kepada Yth:<br><strong>Nama Tamu</strong></p>
         <img src="vintage.png" alt="vintage" class="vintage">
         <p id="bukaundangan" class="buka" onclick="handleClick()">Buka Undangan</p>
@@ -535,7 +554,7 @@
     <div class="slide">
         <p class="bismillah"><em>Bismillahirrahmanirrahim</em></p>
         <p class="isi">Dengan memohon Rahmat &<br>Ridho Allah kami bermaksud<br>menyelenggarakan pernikahan<br>Putra-Putri kami :</p>
-        <p class="nama">Muh. Wahyu Adrianto</p>
+        <p class="nama">Muh. Wahyu Adriyanto</p>
         <p class="anakke">(Putra kedua dari bapak Haris & Ibu Jumiati)</p>
         <p class="and">&</p>
         <p class="nama">Wanda Indrasuari</p>
@@ -607,7 +626,31 @@
                 <img src="6.jpeg" alt="Foto 6">
             </div>
         </div>
-    </div>       
+        <p>Scorll untuk melihat foto lainnya</p>
+    </div>
+
+
+    <div class="slide">
+        <p class="terimakasih">Terima Kasih</p>
+        <p class="hadiah">Apabila Bapak/Ibu/Saudara/i<br>ingin memberikan hadiah kepada<br>Kedua Mempelai<br><strong>Silahkan ketuk tombol di bawah</strong></p>
+        
+        <!-- Container untuk gambar dan tombol -->
+        <div style="display: flex; align-items: center;">
+            <!-- Gambar di sebelah tombol -->
+            <img src="https://www.bankmandiri.co.id/documents/20143/44881086/ag-branding-logo-2.png/30f0204c-d3c1-7237-0e97-6d9c137b2866?t=1623309819189" alt="Bank Mandiri" style="width: 100px;height: auto;border-radius: 5px;margin-right: 10px;margin-top: 10px;">
+            
+            <!-- Tombol -->
+            <button class="bank" id="rekmandiri" onclick="copyToClipboard()">
+                <span id="rekening">1740005743018</span>
+                <i class="fa-solid fa-copy"></i>
+            </button>
+        </div>
+        
+        <div id="copyNotification" style="position: absolute;bottom: 170px;display: none;margin-top: 10px;background-color: rgba(0, 0, 0, 0.59);color: white;padding: 10px;border-radius: 5px;font-size: 12px;">
+            Nomor Rekening Berhasil Disalin!
+        </div>
+    </div>
+    
 
 
     <div class="bottom-bar disabled"> <!-- Tambahkan class 'disabled' di sini -->
@@ -615,8 +658,9 @@
         <button class="icon-button" onclick="showSlide(1)"><i class="fa-solid fa-star-and-crescent"></i></i></button>
         <button class="icon-button" onclick="showSlide(2)"><i class="fas fa-heart"></i></button>
         <button class="icon-button" onclick="showSlide(3)"><i class="fa-solid fa-calendar-days"></i></button>
-        <button class="icon-button" onclick="showSlide(4)"><i class="fa-solid fa-map-location"></i></button>
-        <button class="icon-button" onclick="showSlide(5)"><i class="fa-solid fa-panorama"></i></button>
+        <button class="icon-button" onclick="showSlide(4)"><i class="fa-solid fa-location-dot"></i></button>
+        <button class="icon-button" onclick="showSlide(5)"><i class="fa-solid fa-file-image"></i></button>
+        <button class="icon-button" onclick="showSlide(6)"><i class="fa-solid fa-quote-left"></i></button>
         <div class="indicator"></div>
     </div>
 
@@ -627,7 +671,6 @@
 
 
     <button id="muteButton" style="position: absolute;background: #ffffff70;border: none;color: #8B0000;bottom: 85px;right: 25px;width: 30px;height: 30px;border-radius: 20px;"><i id="muteIcon" class="fas fa-volume-up strikethrough"></i></button>
-
 
 <script>
 
@@ -758,6 +801,36 @@
             img.style.animation = 'none';
         });
     });
+    
+    function copyToClipboard() {
+        // Ambil teks dari elemen dengan id 'rekening'
+        var rekening = document.getElementById("rekening").textContent;
+        
+        // Buat elemen textarea sementara untuk menyalin teks
+        var tempInput = document.createElement("textarea");
+        tempInput.value = rekening;
+        document.body.appendChild(tempInput);
+        
+        // Pilih teks dan salin ke clipboard
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // Untuk mobile devices
+        
+        // Eksekusi perintah salin
+        document.execCommand("copy");
+        
+        // Hapus textarea sementara
+        document.body.removeChild(tempInput);
+        
+        // Tampilkan notifikasi bahwa nomor rekening berhasil disalin
+        var notification = document.getElementById("copyNotification");
+        notification.style.display = "block"; // Tampilkan notifikasi
+
+        // Sembunyikan notifikasi setelah 3 detik
+        setTimeout(function() {
+            notification.style.display = "none";
+        }, 3000); // Notifikasi hilang setelah 3 detik
+    }
+
 
 </script>
 </body>
